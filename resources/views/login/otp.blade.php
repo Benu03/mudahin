@@ -106,9 +106,18 @@
                     @csrf
                     <div class="form-group mb-3">
                         <label for="otp" class="form-label">OTP Code</label>
-                        <input type="text" class="form-control" id="otp" name="otp" value="{{ old('otp') }}">
-                        <input type="hidden" name="username" value="{{ $data['username'] }}">
-                        <input type="hidden" id="old_otp" value="{{ $data['otp'] }}">
+                       <input 
+                            type="text" 
+                            class="form-control" 
+                            id="otp" 
+                            name="otp" 
+                            value="{{ old('otp') }}" 
+                            maxlength="6" 
+                            oninput="this.value=this.value.replace(/[^0-9]/g,'')" 
+                            placeholder="Enter OTP Code"
+                        >
+                        <input type="text" name="username" value="{{ $data['username'] }}">
+                        <input type="text" id="otp_old" name="otp_old" value="{{ $data['otp'] }}">
 
                         <div id="validasiOtp" class="invalid-feedback"></div>
                         @if ($errors->has('otp'))
@@ -135,9 +144,8 @@
     document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('otpForm');
         const otpInput = document.getElementById('otp');
-        const oldOtpInput = document.getElementById('old_otp');
+        const oldOtpInput = document.getElementById('otp_old');
         const validasiOtp = document.getElementById('validasiOtp');
-        const submitBtn = document.getElementById('submitBtn');
 
         form.addEventListener('submit', function (e) {
             if (otpInput.value === '') {
@@ -155,14 +163,15 @@
                 swal({
                     title: "Verifying...",
                     text: "Please wait while we check your OTP code",
-                    buttons: false,
-                    closeOnClickOutside: false,
-                    closeOnEsc: false,
-                    icon: "info"
+                    imageUrl: "https://i.gifer.com/ZZ5H.gif", // loader gif
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
                 });
             }
         });
     });
 </script>
+
 </body>
 </html>

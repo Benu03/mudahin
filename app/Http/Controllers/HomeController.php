@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use App\Http\Helpers\Validator as ValidCheck;
+use Log;
 
 class HomeController extends Controller
 {
@@ -172,18 +173,28 @@ class HomeController extends Controller
         return view('login.otp', compact('data'));
     }
 
-    public function sendOtp(Request $request) {
-        if($request->otp != $request->otp_old){
-            return redirect()->route('otp_page')->withErrors(['otp' => 'otp not match']);
-        }else{
-            return redirect()->route('reset_password_page')->with(
-                [
-                    'otp' => $request->otp,
-                    'username' => $request->username
-                ]);
-        }
+    public function sendOtp(Request $request)
+    {
+                        $inputOtp = trim($request->otp);
+                        $oldOtp   = trim($request->otp_old);
+
+                        Log::info('OTP Compare Debug', [
+                            'input_otp' => $inputOtp,
+                            'old_otp' => $oldOtp,
+                            'username' => $request->username
+                        ]);
+
+                        if ($inputOtp !== $oldOtp) {
+                            return redirect()->route('otp_page')->withErrors(['otp' => 'otp not match']);
+                        }
+
+                        return redirect()->route('reset_password_page')->with([
+                            'otp' => $inputOtp,
+                            'username' => $request->username
+                        ]);
     }
 
+    
     public function reset_password()
     {
 
