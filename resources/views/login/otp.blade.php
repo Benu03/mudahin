@@ -6,147 +6,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'TS3 Indonesia') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Tambahkan link ke Font Awesome CSS (ganti dengan versi terbaru) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha512-....." crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap5/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert/css/sweetalert.css') }}">
+    <script src="{{ asset('assets/sweetalert/js/sweetalert.min.js') }}"></script>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
+    
 
         body, html {
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
+             background: #195fb3;
             height: 100%;
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
         }
 
-        body {
-            box-sizing: border-box;
-            background: url("dist/img/BG.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            animation: fadeInUp 0.8s ease;
+            border: 1px solid #eee;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .btn-login {
-            letter-spacing: 0.2rem;
             padding: 0.75rem 1rem;
+            font-size: 14px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #172fdf, #2f68bd);
+            color: #fff;
+            transition: all 0.3s ease;
         }
 
-        .icon-bg {
-            background: url("{{ url('img/logo/logo.png') }} ") center no-repeat;
-            height: 100%;
-            min-height: 28px;
+        .btn-login:hover {
+             background: linear-gradient(45deg, #172fdf, #2f68bd);
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(50, 175, 129, 0.4);
         }
 
-        .toggle-password {
-            cursor: pointer;
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #007BFF;
+        .form-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #191B71;
         }
 
-        .loading-icon {
-            margin-left: 5px;
+        .text-theme {
+            color: #191B71;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #2E308A;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #191B71;
+        }
+
+        .invalid-feedback {
+            font-weight: 600;
+            font-size: 13px;
+        }
+            .sweet-alert button.confirm {
+            display: none !important;
         }
 
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card border-0 shadow rounded-5 my-5" style="border-radius: 20px;">
-                    <div class="card-body p-4 p-sm-5">
-                        <a href="{{ route('login') }}" style="text-decoration: none; color: #2E308A;font-size:16px;">
-                            <h6 class="card-title text-left mb-5 fw-bold" style="color: #191B71;">
-                                <i class="fa-solid fa-arrow-left"></i>
-                                Back to Login Page
-                            </h6>
-                        </a>
-                        <form method="POST" action="{{ route('send-otp') }}">
-                            @csrf
-                            <div>
-                                <h5 class="card-title text-left fw-bold fs-5" style="color: #191B71;">
-                                    Enter OTP Code
-                                </h5>
-                                <p class="card-text text-justify mb-2">
-                                    Please enter the OTP code that we have sent to your {{ $data['via'] }} to reset your password.
-                                </p>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <label for="floatingOtp">OTP Code</label>
-                                </div>
-                                <div class="position-relative">
-                                    <input type="text" class="form-control" id="otp" name="otp" value="{{ old('otp') }}">
-                                    <input type="hidden" name="username" id="username" value="{{ $data['username'] }}">
-                                    <input type="hidden" name="otp_old" id="old_otp" value="{{ $data['otp'] }}">
-                                </div>
-                                <div id="validasiOtp" class="invalid-feedback" style="font-weight: 600;font-size:14px;">
-                                </div>
-                                @if ($errors->has('otp'))
-                                    <div>
-                                        <font color="red">
-                                            {{ $errors->first('otp') }}
-                                        </font>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="d-grid mt-5" style="margin-bottom: 150px;">
-                                <button id="submitBtn" class="btn btn-login text-uppercase fw-bold text-white"
-                                    style="background-color: #32AF81; border-radius: 20px; font-size: 14px;"
-                                    type="submit">
-                                    SUBMIT
-                                    <span class="loading-icon d-none">
-                                        <i class="fas fa-spinner fa-spin"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="mt-5 icon-bg">
+<div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="col-sm-9 col-md-7 col-lg-5">
+        <div class="card shadow border-0">
+            <div class="card-body p-4">
+                <a href="{{ route('login') }}" class="back-link d-block mb-4">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Login Page
+                </a>
 
-                            </div>
-                        </form>
+                <h4 class="fw-bold text-theme mb-2">🔐 Enter OTP Code</h4>
+                <p class="mb-4 text-muted">
+                    Please enter the OTP code we sent to your <b>{{ $data['via'] }}</b> to reset your password.
+                </p>
+
+                <form method="POST" action="{{ route('send-otp') }}" id="otpForm">
+                    @csrf
+                    <div class="form-group mb-3">
+                        <label for="otp" class="form-label">OTP Code</label>
+                        <input type="text" class="form-control" id="otp" name="otp" value="{{ old('otp') }}">
+                        <input type="hidden" name="username" value="{{ $data['username'] }}">
+                        <input type="hidden" id="old_otp" value="{{ $data['otp'] }}">
+
+                        <div id="validasiOtp" class="invalid-feedback"></div>
+                        @if ($errors->has('otp'))
+                            <div class="text-danger small mt-1">{{ $errors->first('otp') }}</div>
+                        @endif
                     </div>
-                </div>
+
+                    <div class="d-grid mt-4">
+                        <button id="submitBtn" type="submit" class="btn btn-login fw-bold">
+                            SUBMIT
+                            <span class="loading-icon d-none ms-2">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <script src=" {{ asset('plugins/jquery/jquery.min.js') }}"></script>
-    <script>
-         document.addEventListener('DOMContentLoaded', function () {
-            const submitBtn = document.getElementById('submitBtn');
-            const otpInput = document.getElementById('otp');
-            const oldOtpInput = document.getElementById('old_otp');
+</div>
 
-            submitBtn.addEventListener('click', function (e) {
-                if (otpInput.value != '' && otpInput.value == oldOtpInput.value) {
-                    submitBtn.innerHTML = '<span class="loading-icon"><i class="fas fa-spinner fa-spin"></i></span>';
-                }else if (otpInput.value != oldOtpInput.value){
-                    $('#validasiOtp').css('display', 'block');
-                    $('#validasiOtp').text('Invalid OTP Code.');
-                    $('#otp').focus();
-                    e.preventDefault();
-                }else if(otpInput.value == ''){
-                    $('#validasiOtp').text('* Please fill your OTP Code');
-                    $('#otp').focus();
-                    e.preventDefault();
-                }
-            });
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('otpForm');
+        const otpInput = document.getElementById('otp');
+        const oldOtpInput = document.getElementById('old_otp');
+        const validasiOtp = document.getElementById('validasiOtp');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function (e) {
+            if (otpInput.value === '') {
+                validasiOtp.style.display = 'block';
+                validasiOtp.textContent = '* Please fill your OTP Code';
+                otpInput.focus();
+                e.preventDefault();
+            } else if (otpInput.value !== oldOtpInput.value) {
+                validasiOtp.style.display = 'block';
+                validasiOtp.textContent = 'Invalid OTP Code.';
+                otpInput.focus();
+                e.preventDefault();
+            } else {
+                // SweetAlert loading
+                swal({
+                    title: "Verifying...",
+                    text: "Please wait while we check your OTP code",
+                    buttons: false,
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    icon: "info"
+                });
+            }
         });
-    </script>
+    });
+</script>
 </body>
-
 </html>

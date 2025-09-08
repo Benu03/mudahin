@@ -116,7 +116,7 @@ class Login extends Controller
         ]);
     
         if ($validated->fails()) {
-            // Jika validasi gagal, kembali ke halaman reset dengan pesan peringatan
+          
             return redirect()->route('reset_page')->with('warning', $validated->errors()->first());
         } else {
              $via = 'EMAIL'; // Default reset method is email

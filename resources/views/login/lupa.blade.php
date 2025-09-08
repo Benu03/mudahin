@@ -2,124 +2,145 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet" />
-
-    <link rel="stylesheet" href="{{ asset('assets/auth/fonts/icomoon/style.css') }}" />
-
-    <link rel="stylesheet" href="{{ asset('assets/auth/css/owl.carousel.min.css') }}" />
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/auth/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Style -->
-    <link rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ $title }}</title>
     <link rel="shortcut icon" href="{{ asset('assets/upload/image/'.website('icon')) }}">
-    <script src="{{ asset('assets/sweetalert/js/sweetalert.min.js') }}"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet" />
+
+    <!-- Icon & CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/auth/fonts/icomoon/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/sweetalert/css/sweetalert.css') }}">
+    <script src="{{ asset('assets/sweetalert/js/sweetalert.min.js') }}"></script>
+
+    <style>
+        body {
+            background: #195fb3;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card {
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: #195fb3;
+            border-color: #195fb3;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #005fcc;
+            transform: translateY(-2px);
+        }
+
+        .forgot-pass {
+            color: #1613e2;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .forgot-pass:hover {
+            color: #3112fc;
+            text-decoration: underline;
+        }
+
+        /* Hilangkan tombol OK swal */
+        .sweet-alert button.confirm {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="content">
+    <div class="content d-flex align-items-center min-vh-100">
         <div class="container">
-            <div class="row">
-               
-                <div class="col-md-6 contents">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="mb-4 text-center">
-                                <a href="{{ '/' }}">
-                                    <img src="{{ asset('assets/upload/image/'.website('logo')) }}" alt="Image" class="img-fluid" width="200" height="200" />
-                                    <!-- <p class="mb-4">Belife Apps Change Your Life Become Better</p> -->
-                                </a>
-                            </div>
-                          
-                            <form action="{{ asset('login/forgot-process') }}" method="post" accept-charset="utf-8">
-                            {{ csrf_field() }}
-                                <div class="form-group first last mb-4">
-                                    <label for="email">Masukan Email</label>
-                                    <input type="text" class="form-control" id="email" name="email"  autocomplete="off" required />
-                                </div>
-                                {{-- <div class="form-group last mb-4">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" required />
-                                </div> --}}
-
-                                {{-- <div class="d-flex mb-2 align-items-center">
-                                    <label class="control control--checkbox mb-0">
-
-
-                                        <span class="caption">Show Password</span>
-                                        <input type="checkbox" onclick="showpassword()" />
-                                        <div class="control__indicator"></div>
-
-
-                                    </label>
-                           
-                                </div> --}}
-                                <button type="submit" class="btn btn-light btn-block"><i class="fas fa-paper-plane" style="color: #32af81;"></i> Reset Password</button>
-
-                                <span class="ml-auto"><a href="javascript:void(0)" onclick="location.href='{{ '/login' }}'" class="forgot-pass">Back to Login</a></span>
-                                {{-- <input type="submit" value="Log In" class="btn btn-block btn-light" /> --}}
-
-
-                               
-
-                            </form>
-                        </div>
-                    </div>
+            <div class="row justify-content-center align-items-center">
+                <!-- Left Image -->
+                <div class="col-md-6 d-none d-md-block text-center">
+                    <a href="{{ '/' }}">
+                        <img src="{{ asset('assets/upload/image/undraw_experience_design_re_dmqq.svg') }}" alt="Image" class="img-fluid animated-img" />
+                    </a>
                 </div>
+
+                <!-- Forgot Password Form -->
                 <div class="col-md-6">
-                  <a href="{{ '/' }}">
-                    <img src="{{ asset('assets/auth/images/2.svg')}}" alt="Image" class="img-fluid" />
-                  </a>
-                  <span class="d-block text-left my-4 text-center text-white">Copyright &copy;<?= date('Y'); ?> {{ website('namaweb') }} Indonesia</span>
+                    <div class="card shadow p-4">
+                        <div class="text-center mb-4">
+                            <a href="{{ '/' }}">
+                                <img src="{{ asset('assets/upload/image/logo.png')}}" alt="Logo" class="img-fluid" width="170" />
+                            </a>
+                        </div>
+
+                        <form id="forgotForm" action="{{ asset('login/forgot-process') }}" method="post" accept-charset="utf-8">
+                            {{ csrf_field() }}
+
+                            <div class="form-group mb-3">
+                                <label for="email">Masukkan Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Alamat email" autocomplete="off" required />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block mb-3">
+                                <i class="fas fa-paper-plane"></i> Reset Password
+                            </button>
+
+                            <div class="text-center">
+                                <a href="{{ '/login' }}" class="forgot-pass">← Back to Login</a>
+                            </div>
+
+                            <p class="text-center text-muted mb-0 mt-3">&copy; <?= date('Y'); ?> Mudahin</p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- <div class="card card-footer text-center">
-            <strong class="text-center">
-                Copyright &copy;<?= date('Y'); ?> PT TS3 Indonesia
-            </strong>
-    </div> -->
+    <!-- Scripts -->
     <script src="{{ asset('assets/auth/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('assets/auth/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/auth/js/bootstrap.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/auth/js/sweetalert2.min.js') }}"></script> --}}
-    <script src="{{ asset('assets/auth/js/main.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
     <script src="{{ asset('assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
     <script src="{{ asset('assets/admin/dist/js/adminlte.min.js') }}"></script>
-    <script>
-        function showpassword() {
-            var x = document.getElementById("password");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
-    <script>
-    @if ($message = Session::get('warning'))
-    // Notifikasi
-    swal ( "Mohon maaf" ,  "<?php echo $message ?>" ,  "warning" )
-    @endif
 
-    @if ($message = Session::get('sukses'))
-    // Notifikasi
-    swal ( "Berhasil" ,  "<?php echo $message ?>" ,  "success" )
-    @endif
+    <script>
+        // Swal loading ketika submit
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("forgotForm");
+
+            form.addEventListener("submit", function () {
+                swal({
+                    title: "Mohon tunggu...",
+                    text: "Sedang memproses reset password",
+                    icon: "info",
+                    closeOnClickOutside: false,
+                    closeOnEsc: false
+                });
+            });
+        });
+
+        @if ($message = Session::get('warning'))
+            swal("Mohon maaf", "{{ $message }}", "warning");
+        @endif
+
+        @if ($message = Session::get('sukses'))
+            swal("Berhasil", "{{ $message }}", "success");
+        @endif
     </script>
 </body>
-
-
 </html>

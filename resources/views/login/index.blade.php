@@ -69,11 +69,13 @@
             text-decoration: underline;
         }
 
+        .sweet-alert button.confirm {
+            display: none !important;
+        }
 
 
     </style>
     
-
 </head>
 
 <body>
@@ -160,6 +162,24 @@
             swal("Berhasil", "{{ $message }}", "success");
         @endif
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function () {
+            swal({
+                title: "Mohon tunggu...",
+                text: "Sedang memproses login",
+                icon: "info",
+                closeOnClickOutside: false,
+                closeOnEsc: false
+            });
+        });
+    });
+</script>
+
+
 </body>
 
 </html>

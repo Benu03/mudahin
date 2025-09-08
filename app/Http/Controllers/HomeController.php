@@ -36,7 +36,7 @@ class HomeController extends Controller
             'username'      => $usersession['username']
         ];
 
-        $timestamp = arbon::now()->format('Y-m-d H:i:s');
+        $timestamp = carbon::now()->format('Y-m-d H:i:s');
         $encryptionKey = config('static.key_access') . $timestamp;
         $keyPun = hash(config('static.key_hash'), $encryptionKey);
 
@@ -53,28 +53,14 @@ class HomeController extends Controller
        if($responseSessionData['status'] == 200)
         {
 
-            $banner = [
-                [
-                    'image_url' => 'https://via.placeholder.com/1200x80?text=First+Banner', // Sample image URL
-                    'alt_text' => 'First Banner'
-                ],
-                [
-                    'image_url' => 'https://via.placeholder.com/1200x80?text=Second+Banner', // Another sample image URL
-                    'alt_text' => 'Second Banner'
-                ],
-                [
-                    'image_url' => 'https://via.placeholder.com/1200x80?text=Third+Banner', // Another sample image URL
-                    'alt_text' => 'Third Banner'
-                ]
-            ];
+         
         
         $data = [
             'page_title'    => 'Mudahin APP',
             'page_url'      => 'null',
             'secretKey' =>  config('static.key_static'),
             'module'   => session()->get('module'),
-            'user'  => session()->get('user'),
-            'banners' => $banner 
+            'user'  => session()->get('user')
         ];
 
         return view('main.lobby',compact('data'));
@@ -173,9 +159,7 @@ class HomeController extends Controller
 
     public function otp()
     {
-        // if(session()->get('user')){
-        //     return redirect()->route('main');
-        // }
+       
 
         $data = [
             'message'   => session()->get('message'),
@@ -183,6 +167,7 @@ class HomeController extends Controller
             'otp'       => session()->get('otp'),
             'via'       => session()->get('via')
         ];
+
 
         return view('login.otp', compact('data'));
     }
