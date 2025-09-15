@@ -87,10 +87,10 @@
           background: #3d51ea;
     
           /* Chrome 10-25, Safari 5.1-6 */
-          background: -webkit-linear-gradient(to right bottom, rgb(37, 92, 195), rgb(29, 114, 160));
+          background: -webkit-linear-gradient(to right bottom, rgb(79, 125, 133), rgb(119, 149, 154));
     
           /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-          background: linear-gradient(to right bottom, rgb(28, 201, 172), rgb(34, 213, 141));
+          background: linear-gradient(to right bottom, rgb(92, 140, 149), rgb(119, 149, 154));
         }
 
         .toggle-password img {
