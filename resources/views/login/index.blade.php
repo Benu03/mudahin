@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/sweetalert/css/sweetalert.css') }}">
     <style>
         body {
-            background: #195fb3;
+            background: #34c4ff;
             font-family: 'Roboto', sans-serif;
         }
 
@@ -45,27 +45,27 @@
         }
 
         .btn-primary {
-            background: #195fb3;
-            border-color: #195fb3;
+            background: #34c4ff;
+            border-color: #34c4ff;
             transition: background 0.3s ease, transform 0.2s ease;
         }
 
         .btn-primary:hover {
-            background: #005fcc;
+            background: #34c4ff;
             transform: translateY(-2px);
         }
 
  
 
     .forgot-pass {
-            color: #1613e2; /* putih agar kontras dengan biru */
+            color: #34c4ff; /* putih agar kontras dengan biru */
             font-weight: 500;
             text-decoration: none;
         
         }
 
         .forgot-pass:hover {
-            color: #3112fc; /* kuning terang saat hover */
+            color: #34c4ff; /* kuning terang saat hover */
             text-decoration: underline;
         }
 

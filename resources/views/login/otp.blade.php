@@ -16,7 +16,7 @@
     
 
         body, html {
-             background: #195fb3;
+             background: #34c4ff;
             height: 100%;
             margin: 0;
             font-family: 'Nunito', sans-serif;
@@ -44,13 +44,13 @@
             padding: 0.75rem 1rem;
             font-size: 14px;
             border-radius: 20px;
-            background: linear-gradient(45deg, #172fdf, #2f68bd);
+            background: linear-gradient(45deg, #34c4ff, #34c4ff);
             color: #fff;
             transition: all 0.3s ease;
         }
 
         .btn-login:hover {
-             background: linear-gradient(45deg, #172fdf, #2f68bd);
+             background: linear-gradient(45deg, #34c4ff, #34c4ff);
             transform: scale(1.03);
             box-shadow: 0 6px 15px rgba(50, 175, 129, 0.4);
         }
@@ -58,11 +58,11 @@
         .form-label {
             font-weight: 600;
             font-size: 14px;
-            color: #191B71;
+            color: #34c4ff;
         }
 
         .text-theme {
-            color: #191B71;
+            color: #34c4ff;
         }
 
         .back-link {
@@ -74,7 +74,7 @@
         }
 
         .back-link:hover {
-            color: #191B71;
+            color: #34c4ff;
         }
 
         .invalid-feedback {
@@ -116,8 +116,8 @@
                             oninput="this.value=this.value.replace(/[^0-9]/g,'')" 
                             placeholder="Enter OTP Code"
                         >
-                        <input type="text" name="username" value="{{ $data['username'] }}">
-                        <input type="text" id="otp_old" name="otp_old" value="{{ $data['otp'] }}">
+                        <input type="hidden" name="username" value="{{ $data['username'] }}">
+                        <input type="hidden" id="otp_old" name="otp_old" value="{{ $data['otp'] }}">
 
                         <div id="validasiOtp" class="invalid-feedback"></div>
                         @if ($errors->has('otp'))

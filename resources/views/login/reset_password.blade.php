@@ -14,7 +14,7 @@
 
     <style>
         body, html {
-              background: #195fb3;
+              background: #34c4ff;
             height: 100%;
             margin: 0;
             font-family: 'Nunito', sans-serif;
@@ -57,19 +57,19 @@
         .form-label {
             font-weight: 600;
             font-size: 14px;
-            color: #2E308A;
+            color: #34c4ff;
         }
 
         .back-link {
             text-decoration: none;
-            color: #2E308A;
+            color: #34c4ff;
             font-size: 15px;
             font-weight: 600;
             transition: color 0.2s;
         }
 
         .back-link:hover {
-            color: #191B71;
+            color: #34c4ff;
         }
 
         .toggle-password, .toggle-confpassword {
@@ -78,7 +78,7 @@
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            color: #007BFF;
+            color: #34c4ff;
         }
 
         .loading-icon {

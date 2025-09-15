@@ -67,7 +67,7 @@
     }
 
     .bg-layout {
-      background:  #2E308A;
+      background:  #34c4ff;
       height: 100%;
       min-height: 40px;
     }
