@@ -94,7 +94,7 @@
                     <div class="card shadow p-4">
                         <div class="text-center mb-4">
                             <a href="{{ '/' }}">
-                                <img src="{{ asset('assets/upload/image/logo.png') }}" alt="Logo" class="img-fluid" width="170" />
+                                <img src="{{ asset('assets/upload/image/logo_new.png') }}" alt="Logo" class="img-fluid" width="170" />
                             </a>
                     
                         </div>

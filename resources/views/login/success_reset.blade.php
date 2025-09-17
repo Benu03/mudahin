@@ -43,7 +43,7 @@
         }
 
         .icon-bg {
-            background: url("{{ url('img/logo/logo.png') }} ") center no-repeat;
+            background: url("{{ url('img/logo/logo_new.png') }} ") center no-repeat;
             height: 100%;
             min-height: 28px;
         }
@@ -70,7 +70,7 @@
                 <div class="card border-0 shadow rounded-5 my-5" style="border-radius: 20px;">
                     <div class="card-body p-4 p-sm-5 mt-5">
                         <div style="text-align: center">
-                            <img src="{{ url('img/logo/success-logo.png') }}" width="70" height="70">
+                            <img src="{{ url('img/logo/success-logo_new.png') }}" width="70" height="70">
                             <h1 class="card-title text-center mt-5 fs-5" style="color: #2E308A;font-weight:600;">
                                 Password Reset Successfully
                             </h1>
